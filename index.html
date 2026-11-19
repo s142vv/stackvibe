@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="uk" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#060d18">
+    <title>StackVibe Academy UA • Головний освітній портал</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23060d18'/><path d='M35 30 L18 50 L35 70 M65 30 L82 50 L65 70 M55 25 L45 75' stroke='%2338bdf8' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                darkMode: 'class',
+                theme: { 
+                    extend: { 
+                        fontFamily: { 
+                            sans: ['Inter', 'sans-serif'], 
+                            display: ['Montserrat', 'Inter', 'sans-serif'],
+                            mono: ['JetBrains Mono', 'monospace'] 
+                        } 
+                    } 
+                }
+            };
+        }
+    </script>
+    <style>
+        /* Насичений темно-синій фон */
+        body {
+            background-color: #060d18;
+            background-image: 
+                radial-gradient(ellipse 90% 55% at 50% 0%, rgba(22, 72, 138, 0.65) 0%, rgba(12, 36, 72, 0.40) 45%, rgba(6, 13, 24, 0.95) 85%),
+                radial-gradient(circle at 50% 45%, rgba(14, 48, 92, 0.35) 0%, transparent 65%),
+                linear-gradient(180deg, #0b1c36 0%, #071222 45%, #050b14 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #060d18; }
+        ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 9999px; }
+
+        /* Яскраве блакитне світіння заголовка */
+        .hero-title-33 {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.03em;
+            text-shadow: 
+                0 0 25px rgba(56, 189, 248, 0.55),
+                0 0 55px rgba(37, 99, 235, 0.45),
+                0 4px 12px rgba(0, 0, 0, 0.65);
+        }
+
+        /* Стиль карток */
+        .card-33 {
+            border-radius: 22px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-33:hover {
+            transform: translateY(-6px);
+        }
+
+        .guide-card-33 {
+            border-radius: 22px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Тематичні стилі карток з неоновими рамками */
+        .theme-amber {
+            background: radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.10) 0%, rgba(13, 22, 37, 0.92) 65%), #0c1524;
+            border: 1.5px solid rgba(234, 179, 8, 0.78);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(234, 179, 8, 0.18);
+        }
+        .card-33.theme-amber:hover {
+            border-color: #facc15;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(250, 204, 21, 0.32);
+        }
+
+        .theme-emerald {
+            background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.14) 0%, rgba(13, 25, 36, 0.92) 65%), #0c1622;
+            border: 1.5px solid rgba(16, 185, 129, 0.78);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(16, 185, 129, 0.22);
+        }
+        .card-33.theme-emerald:hover {
+            border-color: #34d399;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(52, 211, 153, 0.35);
+        }
+
+        .theme-orange {
+            background: radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.13) 0%, rgba(16, 22, 36, 0.92) 65%), #0e1524;
+            border: 1.5px solid rgba(249, 115, 22, 0.80);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(249, 115, 22, 0.22);
+        }
+        .card-33.theme-orange:hover {
+            border-color: #fb923c;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(251, 146, 60, 0.35);
+        }
+
+        .theme-blue {
+            background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.13) 0%, rgba(13, 22, 38, 0.92) 65%), #0c1525;
+            border: 1.5px solid rgba(56, 189, 248, 0.78);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(56, 189, 248, 0.22);
+        }
+        .card-33.theme-blue:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(56, 189, 248, 0.35);
+        }
+
+        .theme-purple {
+            background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.14) 0%, rgba(15, 21, 38, 0.92) 65%), #0d1425;
+            border: 1.5px solid rgba(168, 85, 247, 0.78);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(168, 85, 247, 0.22);
+        }
+        .card-33.theme-purple:hover {
+            border-color: #c084fc;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(192, 132, 252, 0.35);
+        }
+
+        .theme-teal {
+            background: radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.14) 0%, rgba(13, 24, 37, 0.92) 65%), #0c1624;
+            border: 1.5px solid rgba(20, 184, 166, 0.78);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(20, 184, 166, 0.22);
+        }
+        .card-33.theme-teal:hover {
+            border-color: #2dd4bf;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(45, 212, 191, 0.35);
+        }
+
+        .theme-rose {
+            background: radial-gradient(circle at 50% 0%, rgba(244, 63, 94, 0.14) 0%, rgba(18, 21, 36, 0.92) 65%), #101423;
+            border: 1.5px solid rgba(244, 63, 94, 0.78);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(244, 63, 94, 0.22);
+        }
+        .card-33.theme-rose:hover {
+            border-color: #fb7185;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(251, 113, 133, 0.35);
+        }
+
+        .theme-indigo {
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, rgba(14, 21, 39, 0.92) 65%), #0c1426;
+            border: 1.5px solid rgba(99, 102, 241, 0.80);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(99, 102, 241, 0.22);
+        }
+        .card-33.theme-indigo:hover {
+            border-color: #818cf8;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(129, 140, 248, 0.35);
+        }
+
+        .theme-fuchsia {
+            background: radial-gradient(circle at 50% 0%, rgba(217, 70, 239, 0.14) 0%, rgba(17, 20, 38, 0.92) 65%), #0f1325;
+            border: 1.5px solid rgba(217, 70, 239, 0.78);
+            box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(217, 70, 239, 0.22);
+        }
+        .card-33.theme-fuchsia:hover {
+            border-color: #e879f9;
+            box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(232, 121, 249, 0.35);
+        }
+
+        /* Пігулки-бейджі */
+        .pill-33 {
+            background: rgba(27, 39, 58, 0.9);
+            border: 1px solid rgba(64, 83, 109, 0.65);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Соковиті глянцеві кнопки */
+        .btn-blue-33 {
+            background: linear-gradient(90deg, #0284c7 0%, #2563eb 45%, #38bdf8 100%);
+            box-shadow: 0 6px 22px -3px rgba(56, 189, 248, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+        }
+        .btn-green-33 {
+            background: linear-gradient(90deg, #15803d 0%, #16a34a 45%, #22c55e 100%);
+            box-shadow: 0 6px 22px -3px rgba(34, 197, 94, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+        }
+        .btn-orange-33 {
+            background: linear-gradient(90deg, #ea580c 0%, #f97316 50%, #fb923c 100%);
+            box-shadow: 0 6px 22px -3px rgba(249, 115, 22, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+        }
+        .btn-indigo-33 {
+            background: linear-gradient(90deg, #2563eb 0%, #4f46e5 50%, #60a5fa 100%);
+            box-shadow: 0 6px 22px -3px rgba(96, 165, 250, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+        }
+        .btn-yellow-33 {
+            background: linear-gradient(90deg, #ca8a04 0%, #eab308 50%, #facc15 100%);
+            box-shadow: 0 6px 22px -3px rgba(250, 204, 21, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+        }
+        .btn-purple-33 {
+            background: linear-gradient(90deg, #7e22ce 0%, #9333ea 50%, #c084fc 100%);
+            box-shadow: 0 6px 22px -3px rgba(192, 132, 252, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+        }
+        .btn-teal-33 {
+            background: linear-gradient(90deg, #0f766e 0%, #0d9488 50%, #2dd4bf 100%);
+            box-shadow: 0 6px 22px -3px rgba(45, 212, 191, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+        }
+        .btn-rose-33 {
+            background: linear-gradient(90deg, #be123c 0%, #e11d48 50%, #fb7185 100%);
+            box-shadow: 0 6px 22px -3px rgba(251, 113, 133, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+        }
+        .btn-fuchsia-33 {
+            background: linear-gradient(90deg, #a21caf 0%, #c026d3 50%, #e879f9 100%);
+            box-shadow: 0 6px 22px -3px rgba(232, 121, 249, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-action {
+            transition: all 0.25s ease;
+        }
+        .btn-action:hover {
+            transform: scale(1.02);
+            filter: brightness(1.12);
+        }
+
+        /* Верхня панель та модальне вікно */
+        .glass-header {
+            background: rgba(8, 18, 34, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .modal-33 {
+            background: 
+                radial-gradient(ellipse 90% 55% at 50% 0%, rgba(22, 72, 138, 0.65) 0%, rgba(10, 22, 42, 0.98) 70%),
+                #060d18;
+            box-shadow: 0 25px 70px -10px rgba(0, 0, 0, 0.9), 0 0 50px -10px rgba(56, 189, 248, 0.35);
+        }
+
+        /* ПЛЕЄР КУРСУ (IFRAME + ПРЕЛОАДЕР) */
+        #coursePlayerView {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: #060d18;
+            display: none;
+            flex-direction: column;
+        }
+        #coursePlayerView.active {
+            display: flex;
+        }
+        #courseFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        #courseFrame.loaded {
+            opacity: 1;
+        }
+        #courseLoader {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, #0d1d36 0%, #060d18 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 110;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+        #courseLoader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .spinner-ring {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #38bdf8;
+            border-right-color: #818cf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Режим друку інструкції */
+        @media print {
+            body * { visibility: hidden; }
+            #guideModal, #guideModal * { visibility: visible; }
+            #guideModal {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                background: #060d18 !important;
+                padding: 0 !important;
+                display: block !important;
+            }
+            #guideModalInner {
+                max-height: none !important;
+                max-width: 100% !important;
+                overflow: visible !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            #guideScrollArea {
+                overflow: visible !important;
+                max-height: none !important;
+            }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- ВЕРХНЯ ПАНЕЛЬ -->
+    <header class="sticky top-0 z-40 border-b border-sky-900/40 glass-header no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div id="secretLogo" class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center font-mono font-extrabold text-white text-sm shadow-lg shadow-sky-500/35 cursor-pointer select-none">
+                    SV
+                </div>
+                <div>
+                    <span id="siteHeaderTitle" class="font-display font-black text-sm sm:text-base tracking-wide text-white">StackVibe Academy UA</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <!-- Кнопка входу в кабінет вчителя (ПРИХОВАНА для учнів, з'являється лише в режимі редагування) -->
+                <button type="button" id="teacherCabinetBtn" style="display: none;" onclick="window.openAcademyApp('teacher', 'Кабінет вчителя')" class="px-4 py-2 rounded-full bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-400 text-emerald-300 text-xs font-bold transition items-center gap-1.5 cursor-pointer shadow-md">
+                    <span>👨‍🏫</span> <span>Кабінет вчителя</span>
+                </button>
+                <button type="button" onclick="window.openGuideModal()" class="px-4 py-2 rounded-full pill-33 hover:border-sky-400 text-white text-xs font-bold transition flex items-center gap-2 cursor-pointer shadow-md">
+                    <span>📖</span> <span>Інструкція для учнів</span>
+                </button>
+                <button type="button" id="adminToggleBtn" style="display: none;" onclick="window.toggleCmsMode()" class="px-4 py-2 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-400 text-xs font-bold transition cursor-pointer">
+                    ✏️ Редагувати сайт
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ГОЛОВНИЙ КОНТЕЙНЕР -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-10 pb-16 space-y-10 no-print">
+        
+        <!-- ЗАГОЛОВОК -->
+        <div class="text-center space-y-4 max-w-4xl mx-auto">
+            <h1 id="mainHeroTitle" class="text-3xl sm:text-5xl md:text-[54px] font-black uppercase text-white hero-title-33 leading-tight">
+                StackVibe Academy UA
+            </h1>
+            <p id="mainHeroSubtitle" class="text-sm sm:text-[17px] text-slate-300/90 font-normal leading-relaxed max-w-2xl mx-auto">
+                Інтерактивна платформа для вивчення програмування, офісних технологій, мереж та штучного інтелекту
+            </p>
+            <div class="pt-3">
+                <div class="inline-flex items-center gap-2.5 text-white font-display font-extrabold text-base sm:text-lg uppercase tracking-[0.18em] drop-shadow-[0_2px_15px_rgba(56,189,248,0.4)]">
+                    <span>ОБЕРИ СВІЙ НАПРЯМОК</span>
+                    <span>🚀</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- СІТКА АКАДЕМІЙ -->
+        <div id="academiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer class="border-t border-sky-950/60 bg-[#040911]/90 py-6 text-center text-xs text-slate-400 no-print">
+        <p id="footerText">© 2026 StackVibe Academy UA. Усі права захищено.</p>
+    </footer>
+
+    <!-- ПОВНОЕКРАННИЙ ПЛЕЄР КУРСУ (БЕЗ БІЛОЇ СМУЖКИ GOOGLE) -->
+    <div id="coursePlayerView" class="no-print">
+        <div id="courseLoader">
+            <div class="spinner-ring mb-5"></div>
+            <div id="loaderCourseName" class="font-display font-extrabold text-base sm:text-lg text-white tracking-wide">Завантаження курсу...</div>
+            <div class="text-xs text-slate-400 mt-1">Підключення до освітньої хмари</div>
+        </div>
+
+        <!-- Плаваюча кнопка повернення на головний портал -->
+        <button type="button" onclick="window.closeAcademyApp()" class="fixed bottom-4 left-4 z-[120] px-4 py-2 rounded-full bg-slate-900/90 hover:bg-sky-950 border border-sky-400/50 text-white text-xs font-bold shadow-2xl backdrop-blur-md flex items-center gap-2 cursor-pointer transition">
+            <span>←</span> <span>Всі напрямки</span>
+        </button>
+
+        <iframe id="courseFrame" allow="clipboard-read; clipboard-write; fullscreen"></iframe>
+    </div>
+
+    <!-- МОДАЛЬНЕ ВІКНО: ДЕТАЛЬНА ІЛЮСТРОВАНА ІНСТРУКЦІЯ -->
+    <div id="guideModal" style="display: none;" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md items-center justify-center p-3 sm:p-6">
+        <div id="guideModalInner" class="modal-33 border-2 border-sky-500/60 rounded-[28px] max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden text-white">
+            
+            <div class="px-6 py-4 border-b border-sky-900/60 flex items-center justify-between bg-[#050b14]/80 no-print">
+                <div class="flex items-center gap-3">
+                    <span class="text-xl">📖</span>
+                    <span class="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-sky-300">Ілюстрований путівник учня</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <button type="button" onclick="window.print()" class="px-4 py-1.5 rounded-full btn-blue-33 btn-action text-white font-extrabold text-xs flex items-center gap-1.5 cursor-pointer">
+                        <span>🖨️</span> <span class="hidden sm:inline">Роздрукувати / Зберегти в PDF</span>
+                    </button>
+                    <button type="button" onclick="window.closeGuideModal()" class="w-9 h-9 rounded-full pill-33 hover:border-sky-400 text-white flex items-center justify-center cursor-pointer transition">✕</button>
+                </div>
+            </div>
+            
+            <div id="guideScrollArea" class="p-5 sm:p-8 overflow-y-auto space-y-8">
+                <div class="guide-card-33 theme-blue p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+                    <div class="space-y-3 max-w-2xl">
+                        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full pill-33 text-sky-300 text-xs font-extrabold uppercase tracking-wider">
+                            <span>🎓</span> Офіційний путівник для учнів 5–11 класів та вчителів
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-display font-black tracking-wide uppercase text-white hero-title-33 leading-tight">
+                            Як навчатися на платформі StackVibe Academy UA
+                        </h2>
+                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed">
+                            Детальна інструкція з ілюстраціями: від авторизації за списком класу до отримання 12 балів НУШ.
+                        </p>
+                    </div>
+                    <button type="button" onclick="window.print()" class="no-print shrink-0 px-6 py-3.5 rounded-full btn-blue-33 btn-action text-white font-extrabold text-xs sm:text-sm cursor-pointer">
+                        🖨️ Роздрукувати / PDF
+                    </button>
+                </div>
+
+                <!-- КРОК 1 -->
+                <section class="guide-card-33 theme-indigo p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full pill-33 text-indigo-300 font-extrabold text-xs uppercase tracking-wider">
+                            <span>🔐</span> Крок 1 • Авторизація
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-display font-black uppercase text-white">
+                            Входьте за списком «Доступ_Учнів»
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            Платформа захищена. Доступ відкритий лише для тих учнів, чию пошту вчитель заніс до бази класу.
+                        </p>
+                        <ol class="space-y-2.5 text-xs sm:text-sm text-slate-200 list-decimal list-inside font-medium">
+                            <li>Введіть свою <strong class="text-white">Google Пошту (Gmail)</strong>.</li>
+                            <li>Впишіть своє <strong class="text-white">Прізвище та Ім’я</strong>.</li>
+                            <li>Вкажіть ваш <strong class="text-white">Клас</strong> (наприклад: <code class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-sky-300 mono">8-А</code>).</li>
+                            <li>Натисніть <strong class="text-sky-300">«Увійти та синхронізувати оцінки 🚀»</strong>.</li>
+                        </ol>
+                        <div class="p-3.5 rounded-2xl bg-amber-500/15 border border-amber-400/50 text-xs text-amber-200 leading-relaxed">
+                            <strong class="text-amber-300">💡 Порада:</strong> усі ваші оцінки автоматично зберігаються в хмарі, тож ви можете заходити з будь-якого пристрою.
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 bg-[#050a14] rounded-2xl p-5 border border-indigo-500/50 shadow-2xl text-slate-100 space-y-4">
+                        <div class="text-[11px] mono text-emerald-400 uppercase font-bold tracking-wider">📸 Ілюстрація 1. Вікно входу учня</div>
+                        <div class="bg-[#0b1426] border border-slate-700/80 rounded-xl p-5 space-y-3.5 shadow-inner">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center mono font-extrabold text-sm shadow-md">SV</div>
+                                <div>
+                                    <div class="font-bold text-sm text-white">Вхід до StackVibe UA</div>
+                                    <div class="text-[11px] text-slate-400">Перевірка через Білий список класу</div>
+                                </div>
+                            </div>
+                            <div class="space-y-2 text-xs">
+                                <div>
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase">Gmail пошта:</span>
+                                    <div class="mt-1 px-3 py-2 rounded-lg bg-slate-900 border border-sky-500 mono text-sky-300">student@gmail.com</div>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase">Прізвище та Ім'я:</span>
+                                    <div class="mt-1 px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">Петренко Андрій</div>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase">Клас:</span>
+                                    <div class="mt-1 px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">9-Б</div>
+                                </div>
+                            </div>
+                            <div class="py-2.5 rounded-full btn-indigo-33 text-center font-extrabold text-xs text-white">
+                                Увійти та синхронізувати оцінки 🚀
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- КРОК 2 -->
+                <section class="guide-card-33 theme-emerald p-6 sm:p-8 space-y-6">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div class="space-y-1.5">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full pill-33 text-emerald-300 font-extrabold text-xs uppercase tracking-wider">
+                                <span>⭐</span> Крок 2 • Система оцінювання НУШ
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-display font-black uppercase text-white">
+                                Чотири етапи уроку = 12 балів
+                            </h3>
+                        </div>
+                        <div class="px-4 py-2.5 rounded-full pill-33 border-emerald-400/60 text-emerald-300 mono text-xs sm:text-sm font-bold shadow-lg">
+                            2 б. (Бліц) + 6 б. (Практика) + 4 б. (Тест) = 12 балів ★
+                        </div>
+                    </div>
+
+                    <div class="bg-[#050a14] rounded-2xl p-5 border border-emerald-500/40 text-slate-100 space-y-3.5 shadow-2xl">
+                        <div class="text-[11px] mono text-amber-400 uppercase font-bold">📸 Ілюстрація 2. Перемикач етапів всередині уроку</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                            <div class="p-4 rounded-xl border-2 border-sky-400 bg-sky-500/15 space-y-1.5 shadow">
+                                <div class="flex justify-between text-xs font-extrabold text-sky-300"><span>ЕТАП 1 • 5 ХВ</span><span>🚀</span></div>
+                                <div class="font-bold text-sm text-white">Бліц (1 спроба)</div>
+                                <div class="text-[11px] text-emerald-400 mono font-bold">+2 бали</div>
+                            </div>
+                            <div class="p-4 rounded-xl border border-emerald-500/50 bg-[#0b1623] space-y-1.5">
+                                <div class="flex justify-between text-xs font-extrabold text-emerald-400"><span>ЕТАП 2 • 15 ХВ</span><span>🔍</span></div>
+                                <div class="font-bold text-sm text-white">Теорія / Конспект</div>
+                                <div class="text-[11px] text-slate-300">База знань</div>
+                            </div>
+                            <div class="p-4 rounded-xl border border-amber-500/50 bg-[#0c1524] space-y-1.5">
+                                <div class="flex justify-between text-xs font-extrabold text-amber-400"><span>ЕТАП 3 • 15 ХВ</span><span>💻</span></div>
+                                <div class="font-bold text-sm text-white">Практикум</div>
+                                <div class="text-[11px] text-amber-300 mono font-bold">+6 балів (безліч спроб)</div>
+                            </div>
+                            <div class="p-4 rounded-xl border border-purple-500/50 bg-[#0d1425] space-y-1.5">
+                                <div class="flex justify-between text-xs font-extrabold text-purple-400"><span>ЕТАП 4 • 10 ХВ</span><span>🏆</span></div>
+                                <div class="font-bold text-sm text-white">Тест (12 питань)</div>
+                                <div class="text-[11px] text-purple-300 mono font-bold">+4 бали (1 спроба)</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- КРОК 3 -->
+                <section class="guide-card-33 theme-rose p-6 sm:p-8 space-y-5">
+                    <div class="space-y-1.5">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full pill-33 text-rose-300 font-extrabold text-xs uppercase tracking-wider">
+                            <span>🛡️</span> Крок 3 • Важливі правила академічної доброчесності
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-display font-black uppercase text-white">
+                            Особливості виконання завдань
+                        </h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                        <div class="p-4 rounded-2xl pill-33 space-y-2">
+                            <div class="font-display font-extrabold text-white text-sm">🚫 Заборона Ctrl+V</div>
+                            <p class="text-slate-300 leading-relaxed">У практичних тренажерах вставка готового коду чи формул заблокована. Усі команди набираються самостійно.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl pill-33 space-y-2">
+                            <div class="font-display font-extrabold text-white text-sm">🔒 Одна спроба на тест</div>
+                            <p class="text-slate-300 leading-relaxed">Бліц та фінальний Тест мають обмеження у 1 спробу, тому перед відправкою уважно перевіряйте відповіді.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl pill-33 space-y-2">
+                            <div class="font-display font-extrabold text-white text-sm">📊 Власний Табель</div>
+                            <p class="text-slate-300 leading-relaxed">Ви завжди можете перевірити свої бали за всі пройдені уроки через кнопку «Табель» у верхньому меню курсу.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="px-6 py-4 border-t border-sky-900/60 bg-[#050b14]/90 flex justify-end no-print">
+                <button type="button" onclick="window.closeGuideModal()" class="px-8 py-3 rounded-full btn-blue-33 btn-action text-white font-extrabold text-xs sm:text-sm cursor-pointer">
+                    Зрозуміло, до навчання 🚀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ТОСТ -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden px-4 py-3 rounded-2xl bg-slate-900 text-white text-xs sm:text-sm font-semibold shadow-2xl border border-sky-500/50 no-print"></div>
+
+    <script>
+        (function() {
+            // Зашифровані посилання на Google Apps Script (Base64)
+            var ENCRYPTED_URLS = {
+                teacher: "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4SjFiM1NsbkE3OHNjSmtXTHVZTTZhd3AtM21GM3JpV3gyY1dfZUg3NDNGQWpaVFJUZGRrV2s0MVpJdm11ak5uQnQvZXhlYw==",
+                python:  "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4MjY1X0Y1TWk3THhma1h1enJZeWZuQ1BtQ0ZWel9EZXBGMy0tNWFkNEo1M3dEaW9XT3FqTVA4S1FYOTd2TVFET2ovZXhlYw==",
+                excel:   "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6U1UwRkdKS1hlakM0Y1gtMzlmSXBxRkM4R05kSS16TGFycGdrdWtFS1FfMXMtOXJpQUZaUHllakptLUxZZXpfeVIvZXhlYw==",
+                html:    "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3akxLczByeHloazlNN0x2Y2xtWTUxZkRVcVlUaG9ORnFCdnRHUWRDVHdtRWltanRldllNSWRaTDZGaXlkZ0ZKYUwvZXhlYw==",
+                css:     "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3Z2NpbGliLUs0dVBXd2M5cm9BX1UtdjN2dUdUY0Z5amJzU2F0Y3lfUUZqdVh1MEVqS1gwSGxsOEdhQ2VJbzVacWFwZy9leGVj",
+                js:      "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5OE9ORlVfR2Y4a0djMDZ0WGlNNko2WV81V1ljdWZtY3A2cS1CX0tud24tMlY3TDZmRHktMk81RjR3SDltLTBPcFJIMC9leGVj",
+                db:      "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6VjQxUUNyZmpSZENXZG9EekgtbjY5SHFfZV9KbHpuN3Ewcl84M2gzZk5saGllc09iRzBhYlMzZHVpbHZKYm9yWUR3L2V4ZWM=",
+                code:    "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3VHlqMG9mejhSTFRZN1pycmxmZ01nU1o4MHBoVW1uS3RULWVYa2FFSFZoTEpEbGp5b25iU3dlUnNSSmN4NVJGbHAvZXhlYw==",
+                cyber:   "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4ZDBnV3BFazBMUV9FNjZfa2VGTHNhY0tlZkxMUXh4eTFlRjA3dUl4T2NGSkdfUm9TVVlXdU5jQUk2Rk1Zd1FpUXd5Zy9leGVj",
+                nets:    "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5S1dFQjF1c1V3cWZMaaa8TgfdxpOz64qxpWL7w_mdAKpiGWevAQcLH6fwTcd_Uqj30tVhRhEg/exec".replace("aaa", "kh8") ? "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5S1dFQjF1c1V3cWZMa2g4VGdmZHhwT3o2NHF4cFdMN3dfbWRBS3BpR1dldkFRY0xINmZ3VGNkX1FxajMwdFZoUmhFZy9leGVj" : "",
+                ai:      "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4VmdRNGwyWkU2eVcxa05GcWxvUWplZlpxdWZTcHE3YlprS2VWVGhraWRsaU1OQUw2anZ2STZLeEE1SmJ3emtSVmxvZy9leGVj"
+            };
+
+            var ADMIN_KEY_B64 = "czE0MnZ2QGdtYWlsLmNvbQ==";
+
+            var customIcons = {
+                python: '<div class="w-12 h-12 rounded-2xl bg-sky-500/25 border border-sky-400/50 flex items-center justify-center text-2xl shrink-0 shadow-lg">🐍</div>',
+                excel: '<div class="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center font-mono font-black text-white text-base shadow-lg shadow-emerald-500/40 shrink-0">X<span class="text-[11px] ml-0.5 opacity-90">▤</span></div>',
+                html: '<div class="w-12 h-12 rounded-2xl bg-orange-600 flex items-center justify-center font-mono font-black text-white text-xl shadow-lg shadow-orange-500/40 shrink-0">5</div>',
+                css: '<div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center font-mono font-black text-white text-xl shadow-lg shadow-blue-500/40 shrink-0">3</div>',
+                js: '<div class="w-12 h-12 rounded-2xl bg-amber-400 flex items-center justify-center font-mono font-black text-slate-950 text-base shadow-lg shadow-amber-400/40 shrink-0">JS</div>',
+                db: '<div class="w-12 h-12 rounded-2xl bg-purple-600/30 border border-purple-400/50 flex items-center justify-center text-xl shadow-lg shadow-purple-500/30 shrink-0">🛢️</div>',
+                code: '<div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-400 to-emerald-600 flex items-center justify-center font-mono font-black text-slate-950 text-lg shrink-0 shadow-[0_4px_12px_rgba(20,184,166,0.4)]">01</div>',
+                cyber: '<div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center text-2xl shrink-0 shadow-[0_4px_12px_rgba(244,63,94,0.4)]">🛡️</div>',
+                nets: '<div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-blue-600 flex items-center justify-center text-2xl shrink-0 shadow-[0_4px_12px_rgba(99,102,241,0.4)]">🌐</div>',
+                ai: '<div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-fuchsia-400 to-purple-600 flex items-center justify-center text-2xl shrink-0 shadow-[0_4px_12px_rgba(217,70,239,0.4)]">🤖</div>'
+            };
+
+            var defaultAcademies = [
+                { id: 'python', title: 'PYTHON', desc: 'Програмування з нуля, синтаксис та алгоритми', lessons: '66 уроків', badge: 'Сучасний курс', extraTag: '🎯 Інтерактивні кейси', btnText: 'Почати навчання →', themeCls: 'theme-amber', btnCls: 'btn-blue-33 text-white' },
+                { id: 'excel', title: 'EXCEL', desc: 'Електронні таблиці, формули та аналітика даних', lessons: '40 уроків', badge: 'Основи та формули', extraTag: '🖍️ Практичні задачі', btnText: 'Почати навчання →', themeCls: 'theme-emerald', btnCls: 'btn-green-33 text-white' },
+                { id: 'html', title: 'HTML', desc: 'Створення структури сучасних вебсайтів і розмітка', lessons: '40 уроків', badge: 'Веброзробка', extraTag: '🚀 Власні сайти', btnText: 'Почати навчання →', themeCls: 'theme-orange', btnCls: 'btn-orange-33 text-white' },
+                { id: 'css', title: 'CSS3: ДИЗАЙН', desc: 'Стилізація, адаптивна верстка та анімації', lessons: '20 уроків', badge: 'Дизайн і UI', extraTag: '🎨 Сучасні інтерфейси', btnText: 'Почати навчання →', themeCls: 'theme-blue', btnCls: 'btn-indigo-33 text-white' },
+                { id: 'js', title: 'JAVASCRIPT', desc: 'Інтерактивність вебсторінок, події та логіка', lessons: '40 уроків', badge: 'Фронтенд', extraTag: '⚡ Живий код у браузері', btnText: 'Почати навчання →', themeCls: 'theme-amber', btnCls: 'btn-yellow-33 text-slate-950 font-black' },
+                { id: 'db', title: 'БАЗИ ДАНИХ', desc: 'Реляційні БД, структура та SQL-запити', lessons: '30 уроків', badge: 'SQL та Дані', extraTag: '📊 Робота з таблицями', btnText: 'Почати навчання →', themeCls: 'theme-purple', btnCls: 'btn-purple-33 text-white' },
+                { id: 'code', title: 'СИСТЕМИ ЧИСЛЕННЯ', desc: 'Двійкова система, шістнадцяткова та логіка', lessons: '10 уроків', badge: 'Теорія ІТ', extraTag: '🧮 Інженерні тренажери', btnText: 'Почати навчання →', themeCls: 'theme-teal', btnCls: 'btn-teal-33 text-white' },
+                { id: 'cyber', title: 'КІБЕРГІГІЄНА', desc: 'Захист персональних даних, паролі та безпека', lessons: '10 уроків', badge: 'Кібербезпека', extraTag: '🔐 Захист в Інтернеті', btnText: 'Почати навчання →', themeCls: 'theme-rose', btnCls: 'btn-rose-33 text-white' },
+                { id: 'nets', title: 'МЕРЕЖІ ТА ІНТЕРНЕТ', desc: 'Топології, роутери, IP-адресація та DNS', lessons: '10 уроків', badge: 'Мережі', extraTag: '📡 Мережева лабораторія', btnText: 'Почати навчання →', themeCls: 'theme-indigo', btnCls: 'btn-indigo-33 text-white' },
+                { id: 'ai', title: 'ШТУЧНИЙ ІНТЕЛЕКТ', desc: 'Нейромережі, LLM та промпт-інжиніринг', lessons: '10 уроків', badge: 'Штучний Інтелект', extraTag: '✨ Ефективні промпти', btnText: 'Почати навчання →', themeCls: 'theme-fuchsia', btnCls: 'btn-fuchsia-33 text-white' }
+            ];
+
+            var STORAGE_KEY = 'stackvibe_ua_portal_v5';
+            var academies = defaultAcademies;
+            try {
+                var saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) academies = JSON.parse(saved);
+            } catch (e) {}
+
+            var isCmsMode = false;
+
+            window.showToast = function(msg) {
+                var t = document.getElementById('toast');
+                if (!t) return;
+                t.textContent = msg; 
+                t.classList.remove('hidden');
+                clearTimeout(window.toastTimer);
+                window.toastTimer = setTimeout(function() { t.classList.add('hidden'); }, 3000);
+            };
+
+            window.openAcademyApp = function(id, title, customDirectUrl) {
+                var targetUrl = customDirectUrl || '';
+                if (!targetUrl && ENCRYPTED_URLS[id]) {
+                    try {
+                        targetUrl = atob(ENCRYPTED_URLS[id].trim());
+                    } catch (e) {
+                        targetUrl = ENCRYPTED_URLS[id];
+                    }
+                }
+
+                if (!targetUrl || targetUrl === '#') {
+                    showToast('⏳ Курс «' + title + '» скоро відкриється!');
+                    return;
+                }
+
+                var player = document.getElementById('coursePlayerView');
+                var frame = document.getElementById('courseFrame');
+                var loader = document.getElementById('courseLoader');
+                var loaderTitle = document.getElementById('loaderCourseName');
+
+                loaderTitle.textContent = 'Завантаження: ' + title + '...';
+                frame.classList.remove('loaded');
+                loader.classList.remove('hidden');
+                player.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                frame.src = targetUrl;
+
+                var finishLoad = function() {
+                    frame.classList.add('loaded');
+                    loader.classList.add('hidden');
+                };
+
+                frame.onload = function() { setTimeout(finishLoad, 250); };
+                setTimeout(finishLoad, 6500);
+            };
+
+            window.closeAcademyApp = function() {
+                var player = document.getElementById('coursePlayerView');
+                var frame = document.getElementById('courseFrame');
+                player.classList.remove('active');
+                frame.src = 'about:blank';
+                document.body.style.overflow = '';
+            };
+
+            window.openGuideModal = function() { document.getElementById('guideModal').style.display = 'flex'; };
+            window.closeGuideModal = function() { document.getElementById('guideModal').style.display = 'none'; };
+
+            function getIconHtml(item) {
+                if (item.id && customIcons[item.id]) return customIcons[item.id];
+                return '<div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center text-2xl shrink-0 shadow-lg">🚀</div>';
+            }
+
+            window.renderGrid = function() {
+                var grid = document.getElementById('academiesGrid');
+                if (!grid) return;
+                grid.innerHTML = academies.map(function(item, idx) {
+                    var themeCls = item.themeCls || 'theme-blue';
+                    var btnCls = item.btnCls || 'btn-blue-33 text-white';
+                    var extraTag = item.extraTag || '🎯 Інтерактивні кейси';
+                    var btnText = item.btnText || 'Почати навчання →';
+                    var customUrlArg = item.url ? ("'" + escapeHtml(item.url) + "'") : "null";
+
+                    return '<div class="card-33 ' + themeCls + ' p-6 flex flex-col justify-between space-y-6 relative group">' +
+                        (isCmsMode ? '<div class="absolute top-3 right-3 flex gap-1.5 bg-slate-900/95 p-1.5 rounded-xl border border-slate-600 z-20"><button onclick="window.editAcademy(' + idx + ')" title="Редагувати" class="p-1.5 text-xs bg-sky-600 hover:bg-sky-500 text-white rounded-lg cursor-pointer">✏️</button><button onclick="window.deleteAcademy(' + idx + ')" title="Видалити" class="p-1.5 text-xs bg-rose-600 hover:bg-rose-500 text-white rounded-lg cursor-pointer">🗑️</button></div>' : '') +
+                        
+                        '<div class="space-y-5">' +
+                            '<div class="flex items-center gap-4">' +
+                                getIconHtml(item) +
+                                '<div class="space-y-0.5">' +
+                                    '<h3 class="font-display text-xl sm:text-[22px] font-black text-white tracking-wide uppercase leading-tight">' + escapeHtml(item.title) + '</h3>' +
+                                    '<p class="text-xs sm:text-[13px] text-slate-300/90 leading-snug">' + escapeHtml(item.desc) + '</p>' +
+                                '</div>' +
+                            '</div>' +
+
+                            '<div class="flex flex-wrap gap-2 pt-1">' +
+                                '<span class="px-3.5 py-1.5 rounded-full pill-33 text-white text-xs font-semibold flex items-center gap-1.5"><span>⭐</span> ' + escapeHtml(item.badge) + '</span>' +
+                                '<span class="px-3.5 py-1.5 rounded-full pill-33 text-white text-xs font-semibold flex items-center gap-1.5"><span>📚</span> ' + escapeHtml(item.lessons) + '</span>' +
+                                '<span class="px-3.5 py-1.5 rounded-full pill-33 text-white text-xs font-semibold flex items-center gap-1.5">' + escapeHtml(extraTag) + '</span>' +
+                            '</div>' +
+                        '</div>' +
+
+                        '<div class="pt-1">' +
+                            '<button type="button" onclick="window.openAcademyApp(\'' + escapeHtml(item.id) + '\', \'' + escapeHtml(item.title) + '\', ' + customUrlArg + ')" class="block w-full py-3.5 rounded-full ' + btnCls + ' btn-action text-center font-extrabold text-xs sm:text-sm tracking-wide cursor-pointer">' + escapeHtml(btnText) + '</button>' +
+                        '</div>' +
+                    '</div>';
+                }).join('') + (isCmsMode ? '<div onclick="window.addNewAcademy()" class="card-33 theme-blue p-6 border-2 border-dashed border-sky-400/60 hover:border-sky-300 flex flex-col items-center justify-center space-y-2 cursor-pointer text-sky-300 hover:text-white transition min-h-[250px]"><span class="text-4xl">+</span><span class="font-display font-extrabold text-xs uppercase tracking-wider">Додати нову академію</span></div>' : '');
+            };
+
+            window.toggleCmsMode = function() {
+                isCmsMode = !isCmsMode;
+                var adminBtn = document.getElementById('adminToggleBtn');
+                var teacherBtn = document.getElementById('teacherCabinetBtn');
+
+                if (adminBtn) {
+                    adminBtn.style.display = isCmsMode ? 'inline-flex' : 'none';
+                    adminBtn.textContent = '🔒 Вийти з редагування';
+                }
+                if (teacherBtn) {
+                    teacherBtn.style.display = isCmsMode ? 'inline-flex' : 'none';
+                }
+
+                window.renderGrid();
+                showToast(isCmsMode ? '✏️ Режим вчителя активовано!' : '🔒 Режим вчителя приховано.');
+            };
+
+            window.editAcademy = function(idx) {
+                var item = academies[idx];
+                var newTitle = prompt('Назва академії:', item.title);
+                if (newTitle === null) return;
+                var newDesc = prompt('Опис академії:', item.desc);
+                if (newDesc === null) return;
+                var newUrl = prompt('Посилання (URL):', item.url || '');
+                if (newUrl === null) return;
+                var newLessons = prompt('Кількість уроків:', item.lessons);
+                if (newLessons === null) return;
+                var newBadge = prompt('Перший бейдж:', item.badge);
+                if (newBadge === null) return;
+                var newExtra = prompt('Другий бейдж:', item.extraTag);
+                if (newExtra === null) return;
+
+                academies[idx].title = newTitle;
+                academies[idx].desc = newDesc;
+                if (newUrl.trim()) academies[idx].url = newUrl.trim();
+                academies[idx].lessons = newLessons;
+                academies[idx].badge = newBadge;
+                academies[idx].extraTag = newExtra;
+
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(academies)); } catch (e) {}
+                window.renderGrid();
+                showToast('✅ Збережено!');
+            };
+
+            window.deleteAcademy = function(idx) {
+                if (confirm('Видалити цю академію?')) {
+                    academies.splice(idx, 1);
+                    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(academies)); } catch (e) {}
+                    window.renderGrid();
+                    showToast('🗑️ Видалено.');
+                }
+            };
+
+            window.addNewAcademy = function() {
+                var title = prompt('Назва нової академії:', 'НОВА АКАДЕМІЯ');
+                if (!title) return;
+                academies.push({
+                    id: 'custom_' + Date.now(),
+                    title: title,
+                    desc: 'Опис нового напрямку',
+                    lessons: '10 уроків',
+                    badge: 'Спецкурс',
+                    extraTag: '🚀 Практичні кейси',
+                    btnText: 'Почати навчання →',
+                    themeCls: 'theme-blue',
+                    btnCls: 'btn-blue-33 text-white',
+                    url: ''
+                });
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(academies)); } catch (e) {}
+                window.renderGrid();
+                showToast('✨ Додано нову академію!');
+            };
+
+            var logoClickCount = 0;
+            var logoEl = document.getElementById('secretLogo');
+            if (logoEl) {
+                logoEl.addEventListener('click', function() {
+                    logoClickCount++;
+                    if (logoClickCount >= 5) {
+                        logoClickCount = 0;
+                        var emailInput = prompt('🔒 Введіть пошту адміністратора для доступу до Кабінету вчителя:');
+                        if (emailInput && btoa(emailInput.trim().toLowerCase()) === ADMIN_KEY_B64) {
+                            window.toggleCmsMode();
+                        } else if (emailInput) {
+                            showToast('⛔ Доступ заборонено.');
+                        }
+                    }
+                    setTimeout(function() { logoClickCount = 0; }, 3000);
+                });
+            }
+
+            document.getElementById('guideModal').addEventListener('click', function(e) {
+                if (e.target === this) window.closeGuideModal();
+            });
+
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('keydown', function(e) {
+                if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
+                    e.preventDefault(); return false;
+                }
+            });
+
+            function escapeHtml(s) {
+                return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            }
+
+            window.renderGrid();
+        })();
+    </script>
+</body>
+</html>
