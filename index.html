@@ -25,7 +25,6 @@
         }
     </script>
     <style>
-        /* Насичений темно-синій фон */
         body {
             background-color: #060d18;
             background-image: 
@@ -45,7 +44,6 @@
         ::-webkit-scrollbar-track { background: #060d18; }
         ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 9999px; }
 
-        /* Яскраве блакитне світіння заголовка */
         .hero-title-33 {
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 0.03em;
@@ -55,7 +53,6 @@
                 0 4px 12px rgba(0, 0, 0, 0.65);
         }
 
-        /* Стиль карток */
         .card-33 {
             border-radius: 22px;
             backdrop-filter: blur(16px);
@@ -72,7 +69,6 @@
             -webkit-backdrop-filter: blur(16px);
         }
 
-        /* Тематичні стилі карток з неоновими рамками */
         .theme-amber {
             background: radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.10) 0%, rgba(13, 22, 37, 0.92) 65%), #0c1524;
             border: 1.5px solid rgba(234, 179, 8, 0.78);
@@ -163,14 +159,12 @@
             box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -2px rgba(232, 121, 249, 0.35);
         }
 
-        /* Пігулки-бейджі */
         .pill-33 {
             background: rgba(27, 39, 58, 0.9);
             border: 1px solid rgba(64, 83, 109, 0.65);
             box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
         }
 
-        /* Соковиті глянцеві кнопки */
         .btn-blue-33 {
             background: linear-gradient(90deg, #0284c7 0%, #2563eb 45%, #38bdf8 100%);
             box-shadow: 0 6px 22px -3px rgba(56, 189, 248, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
@@ -216,7 +210,6 @@
             filter: brightness(1.12);
         }
 
-        /* Верхня панель та модальне вікно */
         .glass-header {
             background: rgba(8, 18, 34, 0.75);
             backdrop-filter: blur(16px);
@@ -229,7 +222,6 @@
             box-shadow: 0 25px 70px -10px rgba(0, 0, 0, 0.9), 0 0 50px -10px rgba(56, 189, 248, 0.35);
         }
 
-        /* ПЛЕЄР КУРСУ (IFRAME + ПРЕЛОАДЕР) */
         #coursePlayerView {
             position: fixed;
             inset: 0;
@@ -279,7 +271,6 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Режим друку інструкції */
         @media print {
             body * { visibility: hidden; }
             #guideModal, #guideModal * { visibility: visible; }
@@ -323,7 +314,6 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <!-- Кнопка входу в кабінет вчителя (ПРИХОВАНА для учнів, з'являється лише в режимі редагування) -->
                 <button type="button" id="teacherCabinetBtn" style="display: none;" onclick="window.openAcademyApp('teacher', 'Кабінет вчителя')" class="px-4 py-2 rounded-full bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-400 text-emerald-300 text-xs font-bold transition items-center gap-1.5 cursor-pointer shadow-md">
                     <span>👨‍🏫</span> <span>Кабінет вчителя</span>
                 </button>
@@ -331,7 +321,7 @@
                     <span>📖</span> <span>Інструкція для учнів</span>
                 </button>
                 <button type="button" id="adminToggleBtn" style="display: none;" onclick="window.toggleCmsMode()" class="px-4 py-2 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-400 text-xs font-bold transition cursor-pointer">
-                    ✏️ Редагувати сайт
+                    🔒 Вийти з редагування
                 </button>
             </div>
         </div>
@@ -340,7 +330,6 @@
     <!-- ГОЛОВНИЙ КОНТЕЙНЕР -->
     <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-10 pb-16 space-y-10 no-print">
         
-        <!-- ЗАГОЛОВОК -->
         <div class="text-center space-y-4 max-w-4xl mx-auto">
             <h1 id="mainHeroTitle" class="text-3xl sm:text-5xl md:text-[54px] font-black uppercase text-white hero-title-33 leading-tight">
                 StackVibe Academy UA
@@ -356,7 +345,6 @@
             </div>
         </div>
 
-        <!-- СІТКА АКАДЕМІЙ -->
         <div id="academiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
     </main>
@@ -366,7 +354,7 @@
         <p id="footerText">© 2026 StackVibe Academy UA. Усі права захищено.</p>
     </footer>
 
-    <!-- ПОВНОЕКРАННИЙ ПЛЕЄР КУРСУ (БЕЗ БІЛОЇ СМУЖКИ GOOGLE) -->
+    <!-- ПОВНОЕКРАННИЙ ПЛЕЄР КУРСУ -->
     <div id="coursePlayerView" class="no-print">
         <div id="courseLoader">
             <div class="spinner-ring mb-5"></div>
@@ -374,7 +362,6 @@
             <div class="text-xs text-slate-400 mt-1">Підключення до освітньої хмари</div>
         </div>
 
-        <!-- Плаваюча кнопка повернення на головний портал -->
         <button type="button" onclick="window.closeAcademyApp()" class="fixed bottom-4 left-4 z-[120] px-4 py-2 rounded-full bg-slate-900/90 hover:bg-sky-950 border border-sky-400/50 text-white text-xs font-bold shadow-2xl backdrop-blur-md flex items-center gap-2 cursor-pointer transition">
             <span>←</span> <span>Всі напрямки</span>
         </button>
@@ -382,7 +369,7 @@
         <iframe id="courseFrame" allow="clipboard-read; clipboard-write; fullscreen"></iframe>
     </div>
 
-    <!-- МОДАЛЬНЕ ВІКНО: ДЕТАЛЬНА ІЛЮСТРОВАНА ІНСТРУКЦІЯ -->
+    <!-- МОДАЛЬНЕ ВІКНО: ІНСТРУКЦІЯ ДЛЯ УЧНІВ -->
     <div id="guideModal" style="display: none;" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md items-center justify-center p-3 sm:p-6">
         <div id="guideModalInner" class="modal-33 border-2 border-sky-500/60 rounded-[28px] max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden text-white">
             
@@ -554,22 +541,24 @@
 
     <script>
         (function() {
-            // Зашифровані посилання на Google Apps Script (Base64)
-            var ENCRYPTED_URLS = {
-                teacher: "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4SjFiM1NsbkE3OHNjSmtXTHVZTTZhd3AtM21GM3JpV3gyY1dfZUg3NDNGQWpaVFJUZGRrV2s0MVpJdm11ak5uQnQvZXhlYw==",
-                python:  "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4MjY1X0Y1TWk3THhma1h1enJZeWZuQ1BtQ0ZWel9EZXBGMy0tNWFkNEo1M3dEaW9XT3FqTVA4S1FYOTd2TVFET2ovZXhlYw==",
+            // Прямі посилання на Google Apps Script
+            var COURSE_URLS = {
+                teacher: "https://script.google.com/macros/s/AKfycbxJ1b3SlnA78scJkWLuYM6awp-3mF3riWx2cW_eH344FAjZTRTddkWk41ZIvmujNnBt/exec",
+                python:  "https://script.google.com/macros/s/AKfycbx265_F5Mi7LxfkXuzrYyfnCPmCFVz_DepF3--5ad4J53wDioWOqjMP8KQX97vMQDOj/exec",
                 excel:   "https://script.google.com/macros/s/AKfycbzSU0FGJKXejc4cX-39fIpqFC8GNdI-zLarpgkukEKQ_1s-9riAFZPyejYm-LYez_yR/exec",
-                html:    "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3akxLczByeHloazlNN0x2Y2xtWTUxZkRVcVlUaG9ORnFCdnRHUWRDVHdtRWltanRldllNSWRaTDZGaXlkZ0ZKYUwvZXhlYw==",
+                html:    "https://script.google.com/macros/s/AKfycbwjLKs0rxyhk9M7LvclmY51fDUqYThoNFqBvtGQdCTwmEimjtevYMIdZL6FiydgFJaL/exec",
                 css:     "https://script.google.com/macros/s/AKfycbwgcilib-K4uPWwc9roA_U-v3vuGTcFyjbsSatcy_QFjuXu0EjKX0Hll8GaCeIo5Zqapg/exec",
-                js:      "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5OE9ORlVfR2Y4a0djMDZ0WGlNNko2WV81V1ljdWZtY3A2cS1CX0tud24tMlY3TDZmRHktMk81RjR3SDltLTBPcFJIMC9leGVj",
-                db:      "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6VjQxUUNyZmpSZENXZG9EekgtbjY5SHFfZV9KbHpuN3Ewcl84M2gzZk5saGllc09iRzBhYlMzZHVpbHZKYm9yWUR3L2V4ZWM=",
-                code:    "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3VHlqMG9mejhSTFRZN1pycmxmZ01nU1o4MHBoVW1uS3RULWVYa2FFSFZoTEpEbGp5b25iU3dlUnNSSmN4NVJGbHAvZXhlYw==",
-                cyber:   "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4ZDBnV3BFazBMUV9FNjZfa2VGTHNhY0tlZkxMUXh4eTFlRjA3dUl4T2NGSkdfUm9TVVlXdU5jQUk2Rk1Zd1FpUXd5Zy9leGVj",
-                nets:    "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5S1dFQjF1c1V3cWZMaaa8TgfdxpOz64qxpWL7w_mdAKpiGWevAQcLH6fwTcd_Uqj30tVhRhEg/exec".replace("aaa", "kh8") ? "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5S1dFQjF1c1V3cWZMa2g4VGdmZHhwT3o2NHF4cFdMN3dfbWRBS3BpR1dldkFRY0xINmZ3VGNkX1FxajMwdFZoUmhFZy9leGVj" : "",
-                ai:      "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4VmdRNGwyWkU2eVcxa05GcWxvUWplZlpxdWZTcHE3YlprS2VWVGhraWRsaU1OQUw2anZ2STZLeEE1SmJ3emtSVmxvZy9leGVj"
+                js:      "https://script.google.com/macros/s/AKfycby8ONFU_Gf8kGc06tXiM6J6Y_5WYcufmcp6q-B_Knwn-2V7L6fDy-2O5F4wH9m-0OpRH0/exec",
+                db:      "https://script.google.com/macros/s/AKfycbzV41QCrfjRdCWdoDzH-n69Hq_e_Jlzn7q0r_83h3fNlhiesObG0abS3duilvJborYDw/exec",
+                code:    "https://script.google.com/macros/s/AKfycbwTyj0ofz8RLTY7ZrrlfpMgSZo8phUmnKtT-eXkaEKVhLJDljyonbSweRsRJcx5RFlp/exec",
+                cyber:   "https://script.google.com/macros/s/AKfycbxd0gWpEk0LQ_E66_keFLsacKefLLQxxy1eF07uIxOcFjG_RoSUYWvNcAI6FMYwQiQwyg/exec",
+                nets:    "https://script.google.com/macros/s/AKfycbyKWEB1usUwqfLkh8TgfdxpOz64qxpWL7w_mdAKpiGWevAQcLH6fwTcd_Qqj30tVhRhEg/exec",
+                ai:      "https://script.google.com/macros/s/AKfycbxVgQ4l2ZE6yW1kNFqloQjefZqufSpq7bZkKeVThkidliMNkL6jvvI6KzA5JbwzkRVlog/exec"
             };
 
-            var ADMIN_KEY_B64 = "czE0MnZ2QGdtYWlsLmNvbQ==";
+            // PIN-код для входу в режим вчителя (5 кліків по логотипу SV)
+            var ADMIN_PIN = "1420";
+            var TEACHER_AUTH_KEY = "stackvibe_teacher_unlocked";
 
             var customIcons = {
                 python: '<div class="w-12 h-12 rounded-2xl bg-sky-500/25 border border-sky-400/50 flex items-center justify-center text-2xl shrink-0 shadow-lg">🐍</div>',
@@ -597,7 +586,7 @@
                 { id: 'ai', title: 'ШТУЧНИЙ ІНТЕЛЕКТ', desc: 'Нейромережі, LLM та промпт-інжиніринг', lessons: '10 уроків', badge: 'Штучний Інтелект', extraTag: '✨ Ефективні промпти', btnText: 'Почати навчання →', themeCls: 'theme-fuchsia', btnCls: 'btn-fuchsia-33 text-white' }
             ];
 
-            var STORAGE_KEY = 'stackvibe_ua_portal_v5';
+            var STORAGE_KEY = 'stackvibe_ua_portal_v6';
             var academies = defaultAcademies;
             try {
                 var saved = localStorage.getItem(STORAGE_KEY);
@@ -616,14 +605,7 @@
             };
 
             window.openAcademyApp = function(id, title, customDirectUrl) {
-                var targetUrl = customDirectUrl || '';
-                if (!targetUrl && ENCRYPTED_URLS[id]) {
-                    try {
-                        targetUrl = atob(ENCRYPTED_URLS[id].trim());
-                    } catch (e) {
-                        targetUrl = ENCRYPTED_URLS[id];
-                    }
-                }
+                var targetUrl = customDirectUrl || COURSE_URLS[id] || '';
 
                 if (!targetUrl || targetUrl === '#') {
                     showToast('⏳ Курс «' + title + '» скоро відкриється!');
@@ -717,8 +699,16 @@
                     teacherBtn.style.display = isCmsMode ? 'inline-flex' : 'none';
                 }
 
+                try {
+                    if (isCmsMode) {
+                        localStorage.setItem(TEACHER_AUTH_KEY, '1');
+                    } else {
+                        localStorage.removeItem(TEACHER_AUTH_KEY);
+                    }
+                } catch (e) {}
+
                 window.renderGrid();
-                showToast(isCmsMode ? '✏️ Режим вчителя активовано!' : '🔒 Режим вчителя приховано.');
+                showToast(isCmsMode ? '✏️ Режим вчителя активовано!' : '🔒 Режим вчителя вимкнено.');
             };
 
             window.editAcademy = function(idx) {
@@ -727,7 +717,7 @@
                 if (newTitle === null) return;
                 var newDesc = prompt('Опис академії:', item.desc);
                 if (newDesc === null) return;
-                var newUrl = prompt('Посилання (URL):', item.url || '');
+                var newUrl = prompt('Посилання (URL):', item.url || COURSE_URLS[item.id] || '');
                 if (newUrl === null) return;
                 var newLessons = prompt('Кількість уроків:', item.lessons);
                 if (newLessons === null) return;
@@ -784,11 +774,11 @@
                     logoClickCount++;
                     if (logoClickCount >= 5) {
                         logoClickCount = 0;
-                        var emailInput = prompt('🔒 Введіть пошту адміністратора для доступу до Кабінету вчителя:');
-                        if (emailInput && btoa(emailInput.trim().toLowerCase()) === ADMIN_KEY_B64) {
+                        var pinInput = prompt('🔒 Введіть PIN-код вчителя:');
+                        if (pinInput && pinInput.trim() === ADMIN_PIN) {
                             window.toggleCmsMode();
-                        } else if (emailInput) {
-                            showToast('⛔ Доступ заборонено.');
+                        } else if (pinInput) {
+                            showToast('⛔ Невірний PIN-код.');
                         }
                     }
                     setTimeout(function() { logoClickCount = 0; }, 3000);
@@ -810,7 +800,15 @@
                 return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
             }
 
-            window.renderGrid();
+            try {
+                if (localStorage.getItem(TEACHER_AUTH_KEY) === '1') {
+                    window.toggleCmsMode();
+                } else {
+                    window.renderGrid();
+                }
+            } catch (e) {
+                window.renderGrid();
+            }
         })();
     </script>
 </body>
